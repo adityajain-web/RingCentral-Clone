@@ -119,7 +119,7 @@ const Register = (props) => {
                                                     <Box style={{ width: loadImage ? "50%" : "0%" }}>
                                                         {loadImage ? <img src={loadImage} className='img-fluid' alt='' /> : null}
                                                     </Box>
-                                                    <input type="file" className="form-control" placeholder="Image" name='image' onChange={handleFileChange} accept='image/*' autoComplete='on' required />
+                                                    <input type="file" className="form-control" placeholder="Image" name='image' onChange={handleFileChange} accept='image/*' autoComplete='on' />
                                                 </Box>
                                                 <Box className="form-group">
                                                     <Button type='submit' variant='contained' className={classes.submitBtn}>Sign Up</Button>

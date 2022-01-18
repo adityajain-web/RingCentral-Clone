@@ -5,10 +5,11 @@ import { Friend, ChatListSecHead } from './Components';
 
 const useStyles = makeStyles(theme => ({
     sec: { height: "45.7vh", borderBottom: "1px solid lightgrey" },
-    activeFriends: { height: "35vh", overflowY: "auto", padding: "0.2rem" },
+    activeFriends: { height: "35vh", overflowY: "auto", padding: "0.2rem", overflowX: "hidden" },
 }))
 
-const ChatList = () => {
+const ChatList = ({ friends }) => {
+
     const classes = useStyles();
     return (
         <>
@@ -16,13 +17,9 @@ const ChatList = () => {
                 <ChatListSecHead head="Direct Message" icon={UserOutlined} />
                 <Box className={classes.activeFriends}>
                     <List>
-                        <Friend />
-                        <Friend />
-                        <Friend />
-                        <Friend />
-                        <Friend />
-                        <Friend />
-                        <Friend />
+                        {friends && friends.length > 0 ? friends.map(friend => {
+                            return <Friend friend={friend} />
+                        }) : null}
                     </List>
                 </Box>
             </Box>

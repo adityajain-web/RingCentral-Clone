@@ -11,4 +11,5 @@ export { default as MessageForm } from './MessageForm';
 export { default as ActiveFriend } from './ActiveFriend';
 export { default as Friend } from './Friend';
 export { default as ChatListSecHead } from './ChatListSecHead';
-export { default as Message } from './Message'
+export { default as Message } from './Message';
+export { default as GroupMembers } from './GroupMembers'

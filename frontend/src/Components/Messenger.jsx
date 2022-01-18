@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Grid, Box, makeStyles } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 import { Header, ChatList, ChatFeed, ChatSetting } from './Components';
+import { getFriends } from '../store/action/MessengerAction';
 
 const useStyles = makeStyles(theme => ({
     root: { height: "91.64vh", width: "100%", overflow: "hidden", padding: 0 },
@@ -10,14 +12,21 @@ const useStyles = makeStyles(theme => ({
 
 const Messenger = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const { friends } = useSelector(state => state.messenger);
+    const { myInfo } = useSelector(state => state.auth)
+    useEffect(() => {
+        dispatch(getFriends())
+    }, [dispatch])
+
     return (
         <>
-            <Header />
+            <Header myInfo={myInfo} />
             <Container maxWidth="xl" className={classes.root}>
                 <Grid container>
                     <Grid item xs={12} md={2}>
                         <Box className={`${classes.chatItems} ${classes.bgSideBar}`}>
-                            <ChatList />
+                            <ChatList friends={friends} />
                         </Box>
                     </Grid>
                     <Grid item xs={12} md={8}>
@@ -27,7 +36,7 @@ const Messenger = () => {
                     </Grid>
                     <Grid item xs={12} md={2}>
                         <Box className={`${classes.chatItems} ${classes.bgSideBar}`}>
-                            <ChatSetting />
+                            <ChatSetting friends={friends} />
                         </Box>
                     </Grid>
                 </Grid>

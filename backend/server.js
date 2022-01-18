@@ -2,8 +2,9 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser')
-const bodyParser = require('body-parser')
-const authRouter = require('./routes/authRoute')
+const bodyParser = require('body-parser');
+const authRouter = require('./routes/authRoute');
+const messengerRoute = require('./routes/messengerRoute');
 const databaseConnect = require('./config/database');
 
 dotenv.config({
@@ -14,7 +15,8 @@ const PORT = process.env.PORT || 4000
 
 app.use(bodyParser())
 app.use(cookieParser())
-app.use('/api/messenger', authRouter)
+app.use('/api/messenger', authRouter);
+app.use('/api/messenger', messengerRoute);
 
 app.get('/', (req, res) => {
     res.send('ok')
