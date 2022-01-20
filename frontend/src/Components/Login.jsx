@@ -38,6 +38,7 @@ const Register = () => {
 
     useEffect(() => {
         if (authenticate) {
+            console.log(authenticate)
             navigate("/")
         }
         if (successMessage) {
@@ -48,7 +49,7 @@ const Register = () => {
             dispatch({ type: ERROR_CLEAR })
             return alert.error(error)
         }
-    })
+    }, [successMessage, error, alert, authenticate])
 
     const classes = useStyles();
     return (

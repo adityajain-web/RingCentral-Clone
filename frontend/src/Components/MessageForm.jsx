@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, IconButton, makeStyles } from '@material-ui/core';
 import { SendOutlined } from '@ant-design/icons';
 import { ImAttachment } from 'react-icons/im';
@@ -9,7 +9,8 @@ const useStyles = makeStyles(theme => ({
     root: { display: "flex" }
 }))
 
-const MessageForm = () => {
+const MessageForm = ({ sendMessage }) => {
+    const [message, setMessage] = useState("")
     const classes = useStyles()
     return (
         <>
@@ -20,11 +21,15 @@ const MessageForm = () => {
                     <IconButton><AiOutlineCode /></IconButton>
                     <IconButton><AiOutlineSmile /></IconButton>
                 </Box>
-                <Box className={classes.root} py={2} px={2}>
-                    <input type="text" placeholder='Message' className='form-control' multiple />
-                    <IconButton>
-                        <SendOutlined />
-                    </IconButton>
+                <Box py={2} px={2}>
+                    <form onSubmit={(e) => { e.preventDefault(); sendMessage(message) }}>
+                        <Box className={classes.root}>
+                            <input type="text" placeholder='Message' className='form-control' multiple onChange={(e) => setMessage(e.target.value)} value={message} />
+                            <IconButton type='submit'>
+                                <SendOutlined />
+                            </IconButton>
+                        </Box>
+                    </form>
                 </Box>
             </Box>
         </>

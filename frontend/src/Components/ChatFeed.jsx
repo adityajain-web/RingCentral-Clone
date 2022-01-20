@@ -6,12 +6,12 @@ const useStyles = makeStyles(theme => ({
     chatContainer: { height: "65vh", background: "#fff", overflowY: "auto" }
 }))
 
-const ChatFeed = () => {
+const ChatFeed = ({ currentFriend, sendMessage }) => {
     const classes = useStyles();
     return (
         <>
             <Box>
-                <ChatHeader />
+                <ChatHeader currentFriend={currentFriend} />
                 <Box className={classes.chatContainer}>
                     <List>
                         <Message />
@@ -23,7 +23,7 @@ const ChatFeed = () => {
                         <Message />
                     </List>
                 </Box>
-                <MessageForm />
+                <MessageForm sendMessage={sendMessage} />
             </Box>
         </>
     )

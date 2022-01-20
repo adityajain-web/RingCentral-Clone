@@ -8,8 +8,7 @@ const useStyles = makeStyles(theme => ({
     activeFriends: { height: "35vh", overflowY: "auto", padding: "0.2rem", overflowX: "hidden" },
 }))
 
-const ChatList = ({ friends }) => {
-
+const ChatList = ({ friends, getCurrentFriend, currentFriend }) => {
     const classes = useStyles();
     return (
         <>
@@ -18,7 +17,7 @@ const ChatList = ({ friends }) => {
                 <Box className={classes.activeFriends}>
                     <List>
                         {friends && friends.length > 0 ? friends.map(friend => {
-                            return <Friend friend={friend} />
+                            return <Friend friend={friend} currentFriend={currentFriend} getCurrentFriend={getCurrentFriend} />
                         }) : null}
                     </List>
                 </Box>

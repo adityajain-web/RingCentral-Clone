@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, IconButton, makeStyles } from '@material-ui/core';
+import { Box, Typography, IconButton, Avatar, Badge, makeStyles } from '@material-ui/core';
 import { MoreOutlined } from '@ant-design/icons';
 
 const useStyles = makeStyles(theme => ({
@@ -7,12 +7,15 @@ const useStyles = makeStyles(theme => ({
     head: { fontSize: "1.25rem", fontWeight: 600 }
 }))
 
-const ChatHeader = () => {
+const ChatHeader = ({ currentFriend }) => {
     const classes = useStyles();
     return (
         <>
             <Box py={1} px={2} className={`${classes.root}`} >
-                <Typography variant='h6' className={classes.head}>Programming Team</Typography>
+                <Box className='d-flex'>
+                    <Badge variant='dot'><Avatar src={`./image/${currentFriend.image}`} style={{ marginRight: "0.5rem" }} /></Badge>
+                    <Typography variant='h6' className={classes.head}>{currentFriend.username}</Typography>
+                </Box>
                 <IconButton>
                     <MoreOutlined />
                 </IconButton>

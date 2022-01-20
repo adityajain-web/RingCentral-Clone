@@ -134,6 +134,8 @@ module.exports.userLogin = async (req, res) => {
                     const options = {
                         expires: new Date(Date.now() + process.env.COOKIE_EXP * 24 * 60 * 60 * 1000),
                     }
+
+                    res.status(201).cookie('authToken', token, options).json({ successMessage: "Login successfully...!", token })
                     res.status(201).json({ successMessage: "your login successful", token })
                     console.log('login success')
                 } else {

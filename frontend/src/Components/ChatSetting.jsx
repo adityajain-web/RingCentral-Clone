@@ -3,7 +3,7 @@ import { Box, IconButton, Collapse, Divider, List, ListItem, ListItemText } from
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import { GroupMembers } from './Components'
 
-const ChatSetting = ({ friends }) => {
+const ChatSetting = ({ friends, currentFriend }) => {
     const [Open, setOpen] = useState(false);
     const [state, setState] = useState(false);
     return (
