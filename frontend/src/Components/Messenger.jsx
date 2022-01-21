@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Container, Grid, Box, makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header, ChatList, ChatFeed, ChatSetting } from './Components';
@@ -11,12 +11,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Messenger = () => {
+    const scrollRef = useRef();
     const classes = useStyles();
     const dispatch = useDispatch();
-    const { friends } = useSelector(state => state.messenger);
+    const { friends, message } = useSelector(state => state.messenger);
     const { myInfo } = useSelector(state => state.auth);
     const [currentFriend, setCurrentFriend] = useState("");
-
     const getCurrentFriend = (friend) => {
         setCurrentFriend(friend)
     }
@@ -25,11 +25,17 @@ const Messenger = () => {
         if (message) {
             const data = {
                 senderName: myInfo.username,
+                senderImage: myInfo.image,
                 receiverId: currentFriend._id,
-                message: message
+                message: message,
+                sentAt: new Date()
             }
             dispatch(messageSend(data))
         }
+    }
+
+    const imageSend = (file) => {
+        console.log(file)
     }
 
     useEffect(() => {
@@ -43,8 +49,14 @@ const Messenger = () => {
     }, [friends])
 
     useEffect(() => {
-        dispatch(getMessage(currentFriend._id));
+        if (currentFriend._id) {
+            dispatch(getMessage(currentFriend._id));
+        }
     }, [currentFriend._id, dispatch])
+
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({ behavior: "smooth" })
+    }, [message])
 
     return (
         <>
@@ -58,7 +70,7 @@ const Messenger = () => {
                     </Grid>
                     {currentFriend ? <><Grid item xs={12} md={8}>
                         <Box className={classes.chatItems} >
-                            <ChatFeed currentFriend={currentFriend} sendMessage={sendMessage} />
+                            <ChatFeed currentFriend={currentFriend} sendMessage={sendMessage} messages={message} scrollRef={scrollRef} imageSend={imageSend} />
                         </Box>
                     </Grid>
                         <Grid item xs={12} md={2}>

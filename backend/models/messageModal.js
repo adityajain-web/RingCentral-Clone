@@ -9,6 +9,10 @@ const messageSchema = new Schema({
         type: String,
         required: true
     },
+    senderImage: {
+        type: String,
+        required: true
+    },
     receiverId: {
         type: String,
         required: true
@@ -22,7 +26,11 @@ const messageSchema = new Schema({
             type: String,
             default: ""
         }
+    },
+    sentAt: {
+        type: String,
+        required: true
     }
-}, { timestamps: true })
+}, { timeseries: true })
 
 module.exports = model('message', messageSchema)

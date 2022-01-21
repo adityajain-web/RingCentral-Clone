@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, IconButton, Collapse, Divider, List, ListItem, ListItemText } from '@material-ui/core';
+import { Box, IconButton, Collapse, Divider, List, ListItem, Badge, Avatar, ListItemText } from '@material-ui/core';
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import { GroupMembers } from './Components'
 
@@ -17,9 +17,7 @@ const ChatSetting = ({ friends, currentFriend }) => {
                     <Divider style={{ backgroundColor: "darkgrey" }} />
                     <Collapse in={Open}>
                         <Box className='d-flex overflow-scroll mb-3 py-3'>
-                            {friends && friends.length > 0 ? friends.map(fd => {
-                                return <GroupMembers friend={fd} />
-                            }) : "Add teammates"}
+                            <Badge><Avatar src={`./image/${currentFriend.image}`} /></Badge>
                         </Box>
                     </Collapse>
                 </Box>

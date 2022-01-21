@@ -12,29 +12,32 @@ module.exports.getFriends = async (req, res) => {
 }
 
 module.exports.messageUploadDB = async (req, res) => {
-    const { senderName, receiverId, message } = req.body;
+    const { senderName, senderImage, receiverId, message, sentAt } = req.body;
     const senderId = req.myId;
-    console.log(senderId, senderName, receiverId, message)
     try {
         const insertMessage = await messageModel.create({
             senderId,
             senderName,
+            senderImage,
             receiverId,
             message: {
                 text: message,
                 image: ''
-            }
+            },
+            sentAt
         })
         res.status(201).json({
             success: true,
             message: {
                 senderId,
                 senderName,
+                senderImage,
                 receiverId,
                 message: {
                     text: message,
                     image: ''
-                }
+                },
+                sentAt
             }
         })
     } catch (error) {
@@ -45,13 +48,11 @@ module.exports.messageUploadDB = async (req, res) => {
 module.exports.messageGet = async (req, res) => {
     const myId = req.myId;
     const fdId = req.params.id;
-
     try {
-        const getAllMessage = await messageModel.find({});
-        getAllMessage = getAllMessage.filter(m => m.senderId === myId && m.receiverId === fdId)
-        console.log(getAllMessage)
+        let getAllMessage = await messageModel.find({});
+        getAllMessage = getAllMessage.filter(m => (m.senderId === myId && m.receiverId === fdId) || (m.senderId === fdId && m.receiverId === myId));
+        res.status(200).json({ success: true, message: getAllMessage })
     } catch (error) {
-
+        res.status(500).json({ error: { errorMessage: "Internal server error..!" } })
     }
-
 }
