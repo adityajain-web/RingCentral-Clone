@@ -6,16 +6,16 @@ const useStyles = makeStyles(theme => ({
     chatContainer: { height: "65vh", background: "#fff", overflowY: "auto" }
 }))
 
-const ChatFeed = ({ currentFriend, sendMessage, messages, scrollRef, imageSend }) => {
+const ChatFeed = ({ currentFriend, sendMessage, messages, scrollRef, imageSend, activeUser }) => {
     const classes = useStyles();
     return (
         <>
             <Box>
-                <ChatHeader currentFriend={currentFriend} />
+                <ChatHeader currentFriend={currentFriend} activeUser={activeUser} />
                 <Box className={classes.chatContainer}>
                     <List>
                         {messages.map(message => {
-                            return <Message message={message} scrollRef={scrollRef} />
+                            return <Message key={`msg_${message._id}`} message={message} scrollRef={scrollRef} />
                         })}
                     </List>
                 </Box>
