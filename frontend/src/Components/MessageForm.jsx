@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     root: { display: "flex" }
 }))
 
-const MessageForm = ({ sendMessage, imageSend }) => {
+const MessageForm = ({ sendMessage, imageSend, fileSend, isTyping, typingMessage, currentFriend }) => {
     const [message, setMessage] = useState("")
     const classes = useStyles()
 
@@ -19,7 +19,7 @@ const MessageForm = ({ sendMessage, imageSend }) => {
             <Box style={{ borderTop: "1px solid lightgrey", borderBottom: "1px solid lightgrey", }} id="message_form" >
                 <Box>
                     <label htmlFor="">
-                        <input type="file" name="file" onChange={(e) => imageSend(e.target.files[0])} />
+                        <input type="file" name="file" onChange={(e) => imageSend(e.target.files[0])} accept="image/*" />
                         <FaImages className='text-dark' />
                     </label>
                     <IconButton><AiOutlineCode /></IconButton>
@@ -27,12 +27,17 @@ const MessageForm = ({ sendMessage, imageSend }) => {
                 <Box py={2} px={2}>
                     <form onSubmit={(e) => { e.preventDefault(); sendMessage(message); setMessage("") }}>
                         <Box className={classes.root}>
-                            <input type="text" placeholder='Message' className='form-control' multiple onChange={(e) => setMessage(e.target.value)} value={message} />
+                            <input type="text" placeholder='Message' className='form-control' multiple onChange={(e) => { setMessage(e.target.value); isTyping(true, e) }} value={message} />
                             <IconButton type='submit'>
                                 <SendOutlined />
                             </IconButton>
                         </Box>
                     </form>
+                    {
+                        typingMessage && typingMessage.receiverId === currentFriend._id ? <Box className='typing-message' pt={1}>
+                            <small style={{ fontSize: "0.75rem" }} className='text-secondary'>{currentFriend.username} is typing...</small>
+                        </Box> : null
+                    }
                 </Box>
             </Box>
         </>

@@ -3,12 +3,38 @@ const messageModel = require("../models/messageModal");
 const formidable = require('formidable');
 const fs = require('fs');
 
+const getLastMessage = async (myId, fdId) => {
+    const msg = await messageModel.find({
+        $or: [
+            {
+                $and: [{ senderId: { $eq: myId } }, { receiverId: { $eq: fdId } }]
+
+            }, {
+                $and: [{ senderId: { $eq: fdId } }, { receiverId: { $eq: myId } }]
+            }
+        ]
+    }).sort({ updatedAt: -1 })
+
+    return msg;
+}
+
 module.exports.getFriends = async (req, res) => {
     const myId = req.myId;
+    let frnd_msg = [];
     try {
-        const friendGet = await user.find({});
-        const filter = friendGet.filter(d => d.id !== myId)
-        res.status(200).json({ success: true, friends: filter })
+        const friendGet = await user.find({
+            _id: { $ne: myId }
+        });
+
+        for (let i = 0; i < friendGet.length; i++) {
+            let lastMessage = await getLastMessage(myId, friendGet[i].id);
+            frnd_msg = [...frnd_msg, {
+                frndInfo: friendGet[1],
+                msgInfo:
+            }]
+        }
+        // const filter = friendGet.filter(d => d.id !== myId)
+        res.status(200).json({ success: true, friends: friendGet })
     } catch (error) {
         res.status(500).json({ error: { errorMessage: 'Internal Server Error..!' } })
     }
@@ -52,8 +78,17 @@ module.exports.messageGet = async (req, res) => {
     const myId = req.myId;
     const fdId = req.params.id;
     try {
-        let getAllMessage = await messageModel.find({});
-        getAllMessage = getAllMessage.filter(m => (m.senderId === myId && m.receiverId === fdId) || (m.senderId === fdId && m.receiverId === myId));
+        let getAllMessage = await messageModel.find({
+            $or: [
+                {
+                    $and: [{ senderId: { $eq: myId } }, { receiverId: { $eq: fdId } }]
+
+                }, {
+                    $and: [{ senderId: { $eq: fdId } }, { receiverId: { $eq: myId } }]
+                }
+            ]
+        });
+        // getAllMessage = getAllMessage.filter(m => (m.senderId === myId && m.receiverId === fdId) || (m.senderId === fdId && m.receiverId === myId));
         res.status(200).json({ success: true, message: getAllMessage })
     } catch (error) {
         res.status(500).json({ error: { errorMessage: "Internal server error..!" } })

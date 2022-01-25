@@ -11,7 +11,7 @@ const Message = ({ message, scrollRef }) => {
             sentAtTimeDate.setHours(sentAtTimeDate.getHours() + 5);
             sentAtTimeDate.setMinutes(sentAtTimeDate.getMinutes() + 30);
             return <p>{sentAtTimeDate.getMonth() < 10 ? `0${sentAtTimeDate.getMonth()}` : sentAtTimeDate.getMonth()}/{sentAtTimeDate.getDate() < 10 ? `0${sentAtTimeDate.getDate()}` : sentAtTimeDate.getDate()
-            }, {sentAtTimeDate.getHours()}:{sentAtTimeDate.getMinutes() < 10 ? `0${sentAtTimeDate.getMinutes()}` : sentAtTimeDate.getMinutes()}</p>
+            }, {sentAtTimeDate.getHours() < 10 ? `0${sentAtTimeDate.getHours()}` : sentAtTimeDate.getHours()}:{sentAtTimeDate.getMinutes() < 10 ? `0${sentAtTimeDate.getMinutes()}` : sentAtTimeDate.getMinutes()}</p>
         } else if (message.message.image !== "") {
             // message.message.sentAt = message.message.sentAt.split(" ");
             // return <p>{message.message.sentAt[1]}/{message.message.sentAt[2]}, {message.message.sentAt[4]}</p>

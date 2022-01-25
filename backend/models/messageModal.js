@@ -25,6 +25,10 @@ const messageSchema = new Schema({
         image: {
             type: String,
             default: ""
+        },
+        file: {
+            type: String,
+            default: ""
         }
     },
     sentAt: {

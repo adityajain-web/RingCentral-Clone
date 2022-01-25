@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
     chatContainer: { height: "65vh", background: "#fff", overflowY: "auto" }
 }))
 
-const ChatFeed = ({ currentFriend, sendMessage, messages, scrollRef, imageSend, activeUser }) => {
+const ChatFeed = ({ currentFriend, sendMessage, messages, scrollRef, imageSend, activeUser, fileSend, isTyping, typingMessage }) => {
     const classes = useStyles();
     return (
         <>
@@ -19,7 +19,7 @@ const ChatFeed = ({ currentFriend, sendMessage, messages, scrollRef, imageSend, 
                         })}
                     </List>
                 </Box>
-                <MessageForm sendMessage={sendMessage} imageSend={imageSend} />
+                <MessageForm sendMessage={sendMessage} imageSend={imageSend} fileSend={fileSend} isTyping={isTyping} typingMessage={typingMessage} currentFriend={currentFriend} />
             </Box>
         </>
     )

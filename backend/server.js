@@ -13,7 +13,7 @@ dotenv.config({
 
 const PORT = process.env.PORT || 4000
 
-app.use(bodyParser())
+app.use(bodyParser.json())
 app.use(cookieParser())
 app.use('/api/messenger', authRouter);
 app.use('/api/messenger', messengerRoute);
