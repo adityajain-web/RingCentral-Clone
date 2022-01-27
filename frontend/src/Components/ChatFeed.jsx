@@ -7,7 +7,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const ChatFeed = ({ currentFriend, sendMessage, messages, scrollRef, imageSend, activeUser, fileSend, isTyping, typingMessage }) => {
+=======
+const ChatFeed = ({ currentFriend, sendMessage, messages, scrollRef, imageSend }) => {
+>>>>>>> parent of 840d0e8 (last update 220120221814)
 =======
 const ChatFeed = ({ currentFriend, sendMessage, messages, scrollRef, imageSend }) => {
 >>>>>>> parent of 840d0e8 (last update 220120221814)

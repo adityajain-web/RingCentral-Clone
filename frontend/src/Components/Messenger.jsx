@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Container, Grid, Box, makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { io } from 'socket.io-client';
 import toast, { Toaster } from 'react-hot-toast'
 import { Header, ChatList, ChatFeed, ChatSetting } from './Components';
@@ -9,6 +10,10 @@ import { getFriends, messageSend, getMessage, imageMessageSend } from '../store/
 import useSound from 'use-sound';
 import ReceiverMessageNotification from '../Audio/receive-message.mp3';
 import SentMessageNotification from '../Audio/sent-message.mp3'
+=======
+import { Header, ChatList, ChatFeed, ChatSetting } from './Components';
+import { getFriends, messageSend, getMessage } from '../store/action/MessengerAction';
+>>>>>>> parent of 840d0e8 (last update 220120221814)
 =======
 import { Header, ChatList, ChatFeed, ChatSetting } from './Components';
 import { getFriends, messageSend, getMessage } from '../store/action/MessengerAction';
@@ -28,6 +33,7 @@ const Messenger = () => {
     const { myInfo } = useSelector(state => state.auth);
     const [currentFriend, setCurrentFriend] = useState("");
 <<<<<<< HEAD
+<<<<<<< HEAD
     const [activeUser, setActiveUser] = useState([]);
     const [socketMessage, setSocketMessage] = useState('');
     const [typingMessage, setTypingMessage] = useState("");
@@ -36,10 +42,13 @@ const Messenger = () => {
 
 =======
 >>>>>>> parent of 840d0e8 (last update 220120221814)
+=======
+>>>>>>> parent of 840d0e8 (last update 220120221814)
     const getCurrentFriend = (friend) => {
         setCurrentFriend(friend)
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     useEffect(() => {
         socket.current = io('ws://localhost:8000');
@@ -95,6 +104,8 @@ const Messenger = () => {
 
 =======
 >>>>>>> parent of 840d0e8 (last update 220120221814)
+=======
+>>>>>>> parent of 840d0e8 (last update 220120221814)
     const sendMessage = (message) => {
         if (message) {
             const data = {
@@ -121,6 +132,7 @@ const Messenger = () => {
         }
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     const imageSend = (image) => {
         if (image) {
@@ -161,6 +173,12 @@ const Messenger = () => {
     }
 
 >>>>>>> parent of 840d0e8 (last update 220120221814)
+=======
+    const imageSend = (file) => {
+        console.log(file)
+    }
+
+>>>>>>> parent of 840d0e8 (last update 220120221814)
     useEffect(() => {
         dispatch(getFriends())
     }, [dispatch])
@@ -195,7 +213,11 @@ const Messenger = () => {
                     {currentFriend ? <><Grid item xs={12} md={8}>
                         <Box className={classes.chatItems} >
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <ChatFeed currentFriend={currentFriend} sendMessage={sendMessage} messages={message} scrollRef={scrollRef} imageSend={imageSend} activeUser={activeUser} fileSend={fileSend} isTyping={isTyping} typingMessage={typingMessage} />
+=======
+                            <ChatFeed currentFriend={currentFriend} sendMessage={sendMessage} messages={message} scrollRef={scrollRef} imageSend={imageSend} />
+>>>>>>> parent of 840d0e8 (last update 220120221814)
 =======
                             <ChatFeed currentFriend={currentFriend} sendMessage={sendMessage} messages={message} scrollRef={scrollRef} imageSend={imageSend} />
 >>>>>>> parent of 840d0e8 (last update 220120221814)

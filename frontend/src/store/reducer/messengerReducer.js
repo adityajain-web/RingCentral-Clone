@@ -29,6 +29,7 @@ export const messengerReducer = (state = messengerState, action) => {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     if (type === IMAGE_MESSAGE_SEND) {
         return {
             ...state,
@@ -43,6 +44,8 @@ export const messengerReducer = (state = messengerState, action) => {
         }
     }
 
+=======
+>>>>>>> parent of 840d0e8 (last update 220120221814)
 =======
 >>>>>>> parent of 840d0e8 (last update 220120221814)
     return state

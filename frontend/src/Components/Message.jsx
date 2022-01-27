@@ -7,6 +7,7 @@ const Message = ({ message, scrollRef }) => {
         const messageSentTime = message.sentAt.split("T")[1].split(".")[0].split(":");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             let sentAtTimeDate = new Date(messageSentDate[0], messageSentDate[1], messageSentDate[2], messageSentTime[0], messageSentTime[1], messageSentTime[2]);
             sentAtTimeDate.setHours(sentAtTimeDate.getHours() + 5);
             sentAtTimeDate.setMinutes(sentAtTimeDate.getMinutes() + 30);
@@ -17,11 +18,16 @@ const Message = ({ message, scrollRef }) => {
             // return <p>{message.message.sentAt[1]}/{message.message.sentAt[2]}, {message.message.sentAt[4]}</p>
         }
 =======
+=======
+>>>>>>> parent of 840d0e8 (last update 220120221814)
         let sentAtTimeDate = new Date(messageSentDate[0], messageSentDate[1], messageSentDate[2], messageSentTime[0], messageSentTime[1], messageSentTime[2]);
         sentAtTimeDate.setHours(sentAtTimeDate.getHours() + 5);
         sentAtTimeDate.setMinutes(sentAtTimeDate.getMinutes() + 30);
         return <p>{sentAtTimeDate.getMonth() < 10 ? `0${sentAtTimeDate.getMonth()}` : sentAtTimeDate.getMonth()}/{sentAtTimeDate.getDate() < 10 ? `0${sentAtTimeDate.getDate()}` : sentAtTimeDate.getDate()
         }, {sentAtTimeDate.getHours()}:{sentAtTimeDate.getMinutes() < 10 ? `0${sentAtTimeDate.getMinutes()}` : sentAtTimeDate.getMinutes()}</p>
+<<<<<<< HEAD
+>>>>>>> parent of 840d0e8 (last update 220120221814)
+=======
 >>>>>>> parent of 840d0e8 (last update 220120221814)
     }
 

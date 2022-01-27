@@ -1,6 +1,7 @@
 const user = require('../models/authModel');
 const messageModel = require("../models/messageModal");
 <<<<<<< HEAD
+<<<<<<< HEAD
 const formidable = require('formidable');
 const fs = require('fs');
 
@@ -19,6 +20,8 @@ const getLastMessage = async (myId, fdId) => {
     return msg;
 }
 
+=======
+>>>>>>> parent of 840d0e8 (last update 220120221814)
 =======
 >>>>>>> parent of 840d0e8 (last update 220120221814)
 module.exports.getFriends = async (req, res) => {
