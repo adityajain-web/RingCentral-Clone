@@ -1,4 +1,4 @@
-import { FRIENDS_GET_SUCCESS, MESSAGE_GET_SUCCESS, MESSAGE_SEND_SUCCESS, IMAGE_MESSAGE_SEND } from "../types/messengerType";
+import { FRIENDS_GET_SUCCESS, MESSAGE_GET_SUCCESS, MESSAGE_SEND_SUCCESS } from "../types/messengerType";
 const messengerState = {
     friends: [],
     message: []
@@ -28,6 +28,7 @@ export const messengerReducer = (state = messengerState, action) => {
         }
     }
 
+<<<<<<< HEAD
     if (type === IMAGE_MESSAGE_SEND) {
         return {
             ...state,
@@ -42,5 +43,7 @@ export const messengerReducer = (state = messengerState, action) => {
         }
     }
 
+=======
+>>>>>>> parent of 840d0e8 (last update 220120221814)
     return state
 }

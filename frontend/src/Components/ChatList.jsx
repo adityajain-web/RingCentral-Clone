@@ -17,7 +17,7 @@ const ChatList = ({ friends, getCurrentFriend, currentFriend }) => {
                 <Box className={classes.activeFriends}>
                     <List>
                         {friends && friends.length > 0 ? friends.map(friend => {
-                            return <Friend key={`user_${friend._id}`} friend={friend} currentFriend={currentFriend} getCurrentFriend={getCurrentFriend} />
+                            return <Friend friend={friend} currentFriend={currentFriend} getCurrentFriend={getCurrentFriend} />
                         }) : null}
                     </List>
                 </Box>

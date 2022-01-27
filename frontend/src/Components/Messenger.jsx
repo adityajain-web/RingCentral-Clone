@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Container, Grid, Box, makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
+<<<<<<< HEAD
 import { io } from 'socket.io-client';
 import toast, { Toaster } from 'react-hot-toast'
 import { Header, ChatList, ChatFeed, ChatSetting } from './Components';
@@ -8,6 +9,10 @@ import { getFriends, messageSend, getMessage, imageMessageSend } from '../store/
 import useSound from 'use-sound';
 import ReceiverMessageNotification from '../Audio/receive-message.mp3';
 import SentMessageNotification from '../Audio/sent-message.mp3'
+=======
+import { Header, ChatList, ChatFeed, ChatSetting } from './Components';
+import { getFriends, messageSend, getMessage } from '../store/action/MessengerAction';
+>>>>>>> parent of 840d0e8 (last update 220120221814)
 
 const useStyles = makeStyles(theme => ({
     root: { height: "91.64vh", width: "100%", overflow: "hidden", padding: 0 },
@@ -17,22 +22,25 @@ const useStyles = makeStyles(theme => ({
 
 const Messenger = () => {
     const scrollRef = useRef();
-    const socket = useRef();
     const classes = useStyles();
     const dispatch = useDispatch();
     const { friends, message } = useSelector(state => state.messenger);
     const { myInfo } = useSelector(state => state.auth);
     const [currentFriend, setCurrentFriend] = useState("");
+<<<<<<< HEAD
     const [activeUser, setActiveUser] = useState([]);
     const [socketMessage, setSocketMessage] = useState('');
     const [typingMessage, setTypingMessage] = useState("");
     const [notificationSPlay] = useSound(ReceiverMessageNotification);
     const [sendingSPlay] = useSound(SentMessageNotification)
 
+=======
+>>>>>>> parent of 840d0e8 (last update 220120221814)
     const getCurrentFriend = (friend) => {
         setCurrentFriend(friend)
     }
 
+<<<<<<< HEAD
     useEffect(() => {
         socket.current = io('ws://localhost:8000');
         socket.current.on('get-message', (data) => {
@@ -85,6 +93,8 @@ const Messenger = () => {
         }
     }
 
+=======
+>>>>>>> parent of 840d0e8 (last update 220120221814)
     const sendMessage = (message) => {
         if (message) {
             const data = {
@@ -111,6 +121,7 @@ const Messenger = () => {
         }
     }
 
+<<<<<<< HEAD
     const imageSend = (image) => {
         if (image) {
             const imageName = image.name;
@@ -144,6 +155,12 @@ const Messenger = () => {
         console.log(file)
     }
 
+=======
+    const imageSend = (file) => {
+        console.log(file)
+    }
+
+>>>>>>> parent of 840d0e8 (last update 220120221814)
     useEffect(() => {
         dispatch(getFriends())
     }, [dispatch])
@@ -177,12 +194,16 @@ const Messenger = () => {
                     </Grid>
                     {currentFriend ? <><Grid item xs={12} md={8}>
                         <Box className={classes.chatItems} >
+<<<<<<< HEAD
                             <ChatFeed currentFriend={currentFriend} sendMessage={sendMessage} messages={message} scrollRef={scrollRef} imageSend={imageSend} activeUser={activeUser} fileSend={fileSend} isTyping={isTyping} typingMessage={typingMessage} />
+=======
+                            <ChatFeed currentFriend={currentFriend} sendMessage={sendMessage} messages={message} scrollRef={scrollRef} imageSend={imageSend} />
+>>>>>>> parent of 840d0e8 (last update 220120221814)
                         </Box>
                     </Grid>
                         <Grid item xs={12} md={2}>
                             <Box className={`${classes.chatItems} ${classes.bgSideBar}`}>
-                                <ChatSetting friends={friends} currentFriend={currentFriend} activeUser={activeUser} message={message} myInfo={myInfo} />
+                                <ChatSetting friends={friends} currentFriend={currentFriend} />
                             </Box>
                         </Grid></> : <>
                         <Grid item xs={12} md={10}>

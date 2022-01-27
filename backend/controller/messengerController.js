@@ -1,5 +1,6 @@
 const user = require('../models/authModel');
 const messageModel = require("../models/messageModal");
+<<<<<<< HEAD
 const formidable = require('formidable');
 const fs = require('fs');
 
@@ -18,6 +19,8 @@ const getLastMessage = async (myId, fdId) => {
     return msg;
 }
 
+=======
+>>>>>>> parent of 840d0e8 (last update 220120221814)
 module.exports.getFriends = async (req, res) => {
     const myId = req.myId;
     let frnd_msg = [];
@@ -93,51 +96,4 @@ module.exports.messageGet = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: { errorMessage: "Internal server error..!" } })
     }
-}
-
-module.exports.imageMessageSend = async (req, res) => {
-    const form = formidable();
-    form.parse(req, (err, fields, files) => {
-        const { senderName, senderImage, receiverId, imageName, sentAt } = fields;
-
-        const newPath = __dirname + `../../../frontend/public/image/${imageName}`;
-        const senderId = req.myId;
-        files.image.originalFilename = imageName;
-        try {
-            fs.copyFile(files.image.filepath, newPath, async (error) => {
-                if (error) {
-                    console.log(error);
-                } else {
-                    const insertMessage = await messageModel.create({
-                        senderId,
-                        senderName,
-                        senderImage,
-                        receiverId,
-                        message: {
-                            text: '',
-                            image: files.image.originalFilename
-                        },
-                        sentAt
-                    })
-                }
-            })
-            res.status(201).json({
-                success: true,
-                message: {
-                    senderId,
-                    senderName,
-                    senderImage,
-                    receiverId,
-                    message: {
-                        text: '',
-                        image: imageName
-                    },
-                    sentAt
-                }
-            })
-        } catch (error) {
-            res.status(500).json({ error: { errorMessage: 'Internal Server Error..!' } })
-        }
-    })
-
 }
